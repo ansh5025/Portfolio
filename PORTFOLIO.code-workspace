@@ -3,14 +3,6 @@
 		{
 			"name": "🌐 Portfolio (root)",
 			"path": "."
-		},
-		{
-			"name": "⚙️ Backend (Spring Boot)",
-			"path": "backend"
-		},
-		{
-			"name": "🎨 Frontend (React + Vite)",
-			"path": "frontend"
 		}
 	],
 	"settings": {
