@@ -19,10 +19,10 @@ export const fallbackProfile: Profile = {
   email: 'anshrai922@gmail.com',
   phone: '',
   location: 'Greater Noida, Uttar Pradesh, India',
-  linkedinUrl: 'https://www.linkedin.com/in/ansh-rai/',
+  linkedinUrl: 'https://www.linkedin.com/in/ansh-rai-832117218/',
   githubUrl: 'https://github.com/ansh5025',
   leetcodeUrl: 'https://leetcode.com/ansh5025',
-  gfgUrl: 'https://www.geeksforgeeks.org/user/ansh5025/',
+  codolioUrl: 'https://codolio.com/profile/RetWCBRJ',
   resumeUrl: '/resume.pdf',
   avatarUrl: '',
 };

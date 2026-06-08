@@ -10,7 +10,7 @@ export interface Profile {
   linkedinUrl: string;
   githubUrl: string;
   leetcodeUrl: string;
-  gfgUrl: string;
+  codolioUrl: string;
   resumeUrl: string;
   avatarUrl: string;
 }

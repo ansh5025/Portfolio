@@ -26,7 +26,7 @@ export default function About({ profile }: Props) {
             <p>
               I enjoy designing clean, layered backends — controllers, services, and repositories
               that make business intent obvious. Outside of work I sharpen DSA on LeetCode and
-              GeeksforGeeks, and tinker with side projects.
+              Codolio, and tinker with side projects.
             </p>
           </div>
           <div className="about__facts">

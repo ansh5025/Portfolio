@@ -1,5 +1,5 @@
 import { FaGithub, FaLinkedin, FaCode, FaFileDownload } from 'react-icons/fa';
-import { SiLeetcode, SiGeeksforgeeks } from 'react-icons/si';
+import { SiLeetcode } from 'react-icons/si';
 import type { Profile } from '../types';
 
 interface Props {
@@ -47,9 +47,9 @@ export default function Hero({ profile }: Props) {
                 <SiLeetcode />
               </a>
             )}
-            {profile.gfgUrl && (
-              <a className="icon-btn" href={profile.gfgUrl} target="_blank" rel="noreferrer" aria-label="GeeksforGeeks">
-                <SiGeeksforgeeks />
+            {profile.codolioUrl && (
+              <a className="icon-btn" href={profile.codolioUrl} target="_blank" rel="noreferrer" aria-label="Codolio">
+                <img alt="Codolio" width="24" height="24" src="/codolio_assets/codolio.svg" />
               </a>
             )}
           </div>
