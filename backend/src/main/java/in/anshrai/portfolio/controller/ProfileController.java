@@ -1,0 +1,24 @@
+package in.anshrai.portfolio.controller;
+
+import in.anshrai.portfolio.dto.ApiResponse;
+import in.anshrai.portfolio.model.Profile;
+import in.anshrai.portfolio.service.ProfileService;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/profile")
+public class ProfileController {
+
+    private final ProfileService profileService;
+
+    public ProfileController(ProfileService profileService) {
+        this.profileService = profileService;
+    }
+
+    @GetMapping
+    public ApiResponse<Profile> getProfile() {
+        return ApiResponse.ok(profileService.getProfile());
+    }
+}

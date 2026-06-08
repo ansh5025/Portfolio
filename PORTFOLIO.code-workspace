@@ -1,0 +1,25 @@
+{
+	"folders": [
+		{
+			"name": "🌐 Portfolio (root)",
+			"path": "."
+		},
+		{
+			"name": "⚙️ Backend (Spring Boot)",
+			"path": "backend"
+		},
+		{
+			"name": "🎨 Frontend (React + Vite)",
+			"path": "frontend"
+		}
+	],
+	"settings": {
+		"files.exclude": {
+			"**/target": true,
+			"**/node_modules": true,
+			"**/dist": true
+		},
+		"java.configuration.updateBuildConfiguration": "automatic",
+		"java.compile.nullAnalysis.mode": "disabled"
+	}
+}
