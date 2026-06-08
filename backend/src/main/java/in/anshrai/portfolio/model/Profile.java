@@ -30,7 +30,7 @@ public class Profile {
     private String linkedinUrl;
     private String githubUrl;
     private String leetcodeUrl;
-    private String gfgUrl;
+    private String codolioUrl;
     private String resumeUrl;
     private String avatarUrl;
 }
