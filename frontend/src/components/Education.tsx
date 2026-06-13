@@ -10,7 +10,6 @@ export default function EducationSection({ educations }: Props) {
     <section id="education" className="section">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">// education</span>
           <h2 className="section__title">Education</h2>
         </div>
 

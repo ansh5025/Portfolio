@@ -16,7 +16,6 @@ export default function About({ profile }: Props) {
     <section id="about" className="section">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">// about</span>
           <h2 className="section__title">A bit about me</h2>
         </div>
 
