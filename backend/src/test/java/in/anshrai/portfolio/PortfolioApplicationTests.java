@@ -1,5 +1,6 @@
 package in.anshrai.portfolio;
 
+import in.anshrai.portfolio.service.ResendEmailSender;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,8 +9,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -20,7 +19,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(properties = {
-        "app.contact.mail.from=test@example.com",
+        "app.contact.mail.api-key=test-api-key",
+        "app.contact.mail.from=Portfolio <onboarding@resend.dev>",
         "app.contact.mail.to=test@example.com"
 })
 @AutoConfigureMockMvc
@@ -31,7 +31,7 @@ class PortfolioApplicationTests {
     private MockMvc mockMvc;
 
     @MockBean
-    private JavaMailSender javaMailSender;
+    private ResendEmailSender resendEmailSender;
 
     @Test
     void contextLoads() {
@@ -89,6 +89,6 @@ class PortfolioApplicationTests {
                                 """))
                 .andExpect(status().isCreated());
 
-        verify(javaMailSender).send(any(SimpleMailMessage.class));
+        verify(resendEmailSender).send(any());
     }
 }
