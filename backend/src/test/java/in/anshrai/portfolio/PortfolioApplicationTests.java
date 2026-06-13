@@ -5,22 +5,33 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.system.CapturedOutput;
 import org.springframework.boot.test.system.OutputCaptureExtension;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@SpringBootTest
+@SpringBootTest(properties = {
+        "app.contact.mail.from=test@example.com",
+        "app.contact.mail.to=test@example.com"
+})
 @AutoConfigureMockMvc
 @ExtendWith(OutputCaptureExtension.class)
 class PortfolioApplicationTests {
 
     @Autowired
     private MockMvc mockMvc;
+
+    @MockBean
+    private JavaMailSender javaMailSender;
 
     @Test
     void contextLoads() {
@@ -62,5 +73,22 @@ class PortfolioApplicationTests {
         assertThat(output.getOut()).contains("Accuracy=12.0");
         assertThat(output.getOut()).contains("LocationStatus=granted");
         assertThat(output.getOut()).contains("Path=/api/visits/landing");
+    }
+
+    @Test
+    void sendsContactEmail() throws Exception {
+        mockMvc.perform(post("/api/contact")
+                        .contentType("application/json")
+                        .content("""
+                                {
+                                  "name": "Ansh Rai",
+                                  "email": "sender@example.com",
+                                  "subject": "Hello",
+                                  "message": "Testing contact email delivery."
+                                }
+                                """))
+                .andExpect(status().isCreated());
+
+        verify(javaMailSender).send(any(SimpleMailMessage.class));
     }
 }
