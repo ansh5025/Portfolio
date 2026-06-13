@@ -17,6 +17,10 @@ const client = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
+type LandingVisitPayload = {
+  model: string;
+};
+
 async function unwrap<T>(promise: Promise<{ data: ApiResponse<T> }>): Promise<T> {
   const res = await promise;
   if (!res.data.success) {
@@ -31,7 +35,7 @@ export const api = {
   getExperience: () => unwrap<Experience[]>(client.get('/experience')),
   getProjects: () => unwrap<Project[]>(client.get('/projects')),
   getEducation: () => unwrap<Education[]>(client.get('/education')),
-  trackLandingVisit: () => client.post('/visits/landing'),
+  trackLandingVisit: (payload: LandingVisitPayload) => client.post('/visits/landing', payload),
   submitContact: (payload: ContactRequest) =>
     unwrap<{ id: number }>(client.post('/contact', payload)),
 };

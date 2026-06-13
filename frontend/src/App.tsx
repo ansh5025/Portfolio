@@ -24,6 +24,13 @@ import type {
   SkillsByCategory,
 } from './types';
 
+type NavigatorUAData = {
+  getHighEntropyValues: (hints: string[]) => Promise<{
+    model?: string;
+    platform?: string;
+  }>;
+};
+
 export default function App() {
   const [profile, setProfile] = useState<Profile>(fallbackProfile);
   const [skills, setSkills] = useState<SkillsByCategory>(fallbackSkills);
@@ -33,12 +40,22 @@ export default function App() {
   const landingVisitKey = 'portfolio.landing-visit.logged';
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && !window.sessionStorage.getItem(landingVisitKey)) {
+    const trackLandingVisit = async () => {
+      if (typeof window === 'undefined' || window.sessionStorage.getItem(landingVisitKey)) {
+        return;
+      }
+
       window.sessionStorage.setItem(landingVisitKey, 'true');
-      void api.trackLandingVisit().catch(() => {
+
+      try {
+        const model = await getDeviceModel();
+        await api.trackLandingVisit({ model });
+      } catch {
         window.sessionStorage.removeItem(landingVisitKey);
-      });
-    }
+      }
+    };
+
+    void trackLandingVisit();
   }, [landingVisitKey]);
 
   useEffect(() => {
@@ -75,4 +92,24 @@ export default function App() {
       <Footer profile={profile} />
     </div>
   );
+}
+
+async function getDeviceModel(): Promise<string> {
+  const navigatorWithUAData = navigator as Navigator & {
+    userAgentData?: NavigatorUAData;
+  };
+
+  if (!navigatorWithUAData.userAgentData) {
+    return 'Unknown';
+  }
+
+  try {
+    const data = await navigatorWithUAData.userAgentData.getHighEntropyValues([
+      'model',
+      'platform',
+    ]);
+    return data.model?.trim() || 'Unknown';
+  } catch {
+    return 'Unknown';
+  }
 }
