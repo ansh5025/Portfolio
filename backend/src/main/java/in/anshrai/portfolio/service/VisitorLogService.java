@@ -18,10 +18,11 @@ public class VisitorLogService {
             String model,
             Double latitude,
             Double longitude,
-            Double accuracy
+            Double accuracy,
+            String locationStatus
     ) {
         log.info(
-                "Visitor IP={} OS={} Device={} Model={} Latitude={} Longitude={} Accuracy={} Method={} Path={}",
+                "Visitor IP={} OS={} Device={} Model={} Latitude={} Longitude={} Accuracy={} LocationStatus={} Method={} Path={}",
                 sanitize(ipAddress),
                 sanitize(osType),
                 sanitize(deviceType),
@@ -29,6 +30,7 @@ public class VisitorLogService {
                 sanitizeNumber(latitude),
                 sanitizeNumber(longitude),
                 sanitizeNumber(accuracy),
+                sanitize(locationStatus),
                 sanitize(method),
                 sanitize(path)
         );

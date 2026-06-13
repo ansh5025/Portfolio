@@ -22,6 +22,7 @@ type LandingVisitPayload = {
   latitude: number | null;
   longitude: number | null;
   accuracy: number | null;
+  locationStatus: string;
 };
 
 async function unwrap<T>(promise: Promise<{ data: ApiResponse<T> }>): Promise<T> {

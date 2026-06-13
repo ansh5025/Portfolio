@@ -6,6 +6,7 @@ public class VisitorRequest {
     private Double latitude;
     private Double longitude;
     private Double accuracy;
+    private String locationStatus;
 
     public String getModel() {
         return model;
@@ -37,5 +38,13 @@ public class VisitorRequest {
 
     public void setAccuracy(Double accuracy) {
         this.accuracy = accuracy;
+    }
+
+    public String getLocationStatus() {
+        return locationStatus;
+    }
+
+    public void setLocationStatus(String locationStatus) {
+        this.locationStatus = locationStatus;
     }
 }
