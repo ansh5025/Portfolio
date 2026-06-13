@@ -19,6 +19,9 @@ const client = axios.create({
 
 type LandingVisitPayload = {
   model: string;
+  latitude: number | null;
+  longitude: number | null;
+  accuracy: number | null;
 };
 
 async function unwrap<T>(promise: Promise<{ data: ApiResponse<T> }>): Promise<T> {

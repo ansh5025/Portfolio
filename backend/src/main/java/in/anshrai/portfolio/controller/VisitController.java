@@ -17,6 +17,9 @@ public class VisitController {
                                                HttpServletRequest httpRequest) {
         if (request != null) {
             httpRequest.setAttribute("visitorModel", request.getModel());
+            httpRequest.setAttribute("visitorLatitude", request.getLatitude());
+            httpRequest.setAttribute("visitorLongitude", request.getLongitude());
+            httpRequest.setAttribute("visitorAccuracy", request.getAccuracy());
         }
         return ApiResponse.ok("Landing visit logged", null);
     }
