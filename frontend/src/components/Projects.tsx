@@ -10,7 +10,6 @@ export default function Projects({ projects }: Props) {
     <section id="projects" className="section">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">// projects</span>
           <h2 className="section__title">Selected projects</h2>
           <p className="section__sub">
             A mix of full-stack web apps and applied ML — each one built end-to-end.

@@ -9,7 +9,6 @@ export default function ExperienceSection({ experiences }: Props) {
     <section id="experience" className="section">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">// experience</span>
           <h2 className="section__title">Where I've worked</h2>
         </div>
 

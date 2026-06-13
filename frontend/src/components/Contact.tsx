@@ -40,7 +40,6 @@ export default function Contact({ profile }: Props) {
     <section id="contact" className="section">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">// contact</span>
           <h2 className="section__title">Let's build something</h2>
           <p className="section__sub">
             Got a backend role, a project, or just want to chat? Drop a message — I'll reply.

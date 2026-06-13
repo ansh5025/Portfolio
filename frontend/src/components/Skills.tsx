@@ -11,7 +11,6 @@ export default function Skills({ skills }: Props) {
     <section id="skills" className="section">
       <div className="container">
         <div className="section__head">
-          <span className="section__eyebrow">// stack</span>
           <h2 className="section__title">Skills & Tooling</h2>
           <p className="section__sub">
             The languages, frameworks, and tools I use to build and ship backend systems.
