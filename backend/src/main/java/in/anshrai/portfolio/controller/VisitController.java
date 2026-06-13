@@ -20,6 +20,7 @@ public class VisitController {
             httpRequest.setAttribute("visitorLatitude", request.getLatitude());
             httpRequest.setAttribute("visitorLongitude", request.getLongitude());
             httpRequest.setAttribute("visitorAccuracy", request.getAccuracy());
+            httpRequest.setAttribute("visitorLocationStatus", request.getLocationStatus());
         }
         return ApiResponse.ok("Landing visit logged", null);
     }

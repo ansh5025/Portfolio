@@ -15,6 +15,7 @@ public class VisitorLoggingInterceptor implements HandlerInterceptor {
     public static final String VISITOR_LATITUDE_ATTRIBUTE = "visitorLatitude";
     public static final String VISITOR_LONGITUDE_ATTRIBUTE = "visitorLongitude";
     public static final String VISITOR_ACCURACY_ATTRIBUTE = "visitorAccuracy";
+    public static final String VISITOR_LOCATION_STATUS_ATTRIBUTE = "visitorLocationStatus";
 
     private final VisitorLogService visitorLogService;
 
@@ -33,7 +34,8 @@ public class VisitorLoggingInterceptor implements HandlerInterceptor {
                 request.getAttribute(VISITOR_MODEL_ATTRIBUTE) instanceof String model ? model : null,
                 request.getAttribute(VISITOR_LATITUDE_ATTRIBUTE) instanceof Double latitude ? latitude : null,
                 request.getAttribute(VISITOR_LONGITUDE_ATTRIBUTE) instanceof Double longitude ? longitude : null,
-                request.getAttribute(VISITOR_ACCURACY_ATTRIBUTE) instanceof Double accuracy ? accuracy : null
+                request.getAttribute(VISITOR_ACCURACY_ATTRIBUTE) instanceof Double accuracy ? accuracy : null,
+                request.getAttribute(VISITOR_LOCATION_STATUS_ATTRIBUTE) instanceof String locationStatus ? locationStatus : null
         );
     }
 

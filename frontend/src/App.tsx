@@ -35,6 +35,7 @@ type DeviceLocation = {
   latitude: number | null;
   longitude: number | null;
   accuracy: number | null;
+  status: string;
 };
 
 export default function App() {
@@ -63,6 +64,7 @@ export default function App() {
           latitude: location.latitude,
           longitude: location.longitude,
           accuracy: location.accuracy,
+          locationStatus: location.status,
         });
       } catch {
         window.sessionStorage.removeItem(landingVisitKey);
@@ -134,6 +136,7 @@ async function getDeviceLocation(): Promise<DeviceLocation> {
       latitude: null,
       longitude: null,
       accuracy: null,
+      status: 'unsupported',
     };
   }
 
@@ -144,13 +147,15 @@ async function getDeviceLocation(): Promise<DeviceLocation> {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
           accuracy: position.coords.accuracy,
+          status: 'granted',
         });
       },
-      () => {
+      (error) => {
         resolve({
           latitude: null,
           longitude: null,
           accuracy: null,
+          status: mapLocationError(error),
         });
       },
       {
@@ -160,4 +165,17 @@ async function getDeviceLocation(): Promise<DeviceLocation> {
       },
     );
   });
+}
+
+function mapLocationError(error: GeolocationPositionError): string {
+  switch (error.code) {
+    case error.PERMISSION_DENIED:
+      return 'denied';
+    case error.POSITION_UNAVAILABLE:
+      return 'unavailable';
+    case error.TIMEOUT:
+      return 'timeout';
+    default:
+      return 'error';
+  }
 }
