@@ -37,6 +37,9 @@ class PortfolioApplicationTests {
         assertThat(output.getOut()).contains("OS=Windows");
         assertThat(output.getOut()).contains("Device=Desktop");
         assertThat(output.getOut()).contains("Model=unknown");
+        assertThat(output.getOut()).contains("Latitude=unknown");
+        assertThat(output.getOut()).contains("Longitude=unknown");
+        assertThat(output.getOut()).contains("Accuracy=unknown");
         assertThat(output.getOut()).contains("Path=/api/profile");
     }
 
@@ -44,7 +47,7 @@ class PortfolioApplicationTests {
     void logsLandingVisitor(CapturedOutput output) throws Exception {
         mockMvc.perform(post("/api/visits/landing")
                         .contentType("application/json")
-                        .content("{\"model\":\"SM-S928B\"}")
+                        .content("{\"model\":\"SM-S928B\",\"latitude\":18.52043,\"longitude\":73.856743,\"accuracy\":12.0}")
                         .header("X-Forwarded-For", "198.51.100.24")
                         .header("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"))
                 .andExpect(status().isOk());
@@ -53,6 +56,9 @@ class PortfolioApplicationTests {
         assertThat(output.getOut()).contains("OS=iOS");
         assertThat(output.getOut()).contains("Device=Mobile");
         assertThat(output.getOut()).contains("Model=SM-S928B");
+        assertThat(output.getOut()).contains("Latitude=18.52043");
+        assertThat(output.getOut()).contains("Longitude=73.856743");
+        assertThat(output.getOut()).contains("Accuracy=12.0");
         assertThat(output.getOut()).contains("Path=/api/visits/landing");
     }
 }

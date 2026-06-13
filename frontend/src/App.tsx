@@ -31,6 +31,12 @@ type NavigatorUAData = {
   }>;
 };
 
+type DeviceLocation = {
+  latitude: number | null;
+  longitude: number | null;
+  accuracy: number | null;
+};
+
 export default function App() {
   const [profile, setProfile] = useState<Profile>(fallbackProfile);
   const [skills, setSkills] = useState<SkillsByCategory>(fallbackSkills);
@@ -48,8 +54,16 @@ export default function App() {
       window.sessionStorage.setItem(landingVisitKey, 'true');
 
       try {
-        const model = await getDeviceModel();
-        await api.trackLandingVisit({ model });
+        const [model, location] = await Promise.all([
+          getDeviceModel(),
+          getDeviceLocation(),
+        ]);
+        await api.trackLandingVisit({
+          model,
+          latitude: location.latitude,
+          longitude: location.longitude,
+          accuracy: location.accuracy,
+        });
       } catch {
         window.sessionStorage.removeItem(landingVisitKey);
       }
@@ -112,4 +126,38 @@ async function getDeviceModel(): Promise<string> {
   } catch {
     return 'Unknown';
   }
+}
+
+async function getDeviceLocation(): Promise<DeviceLocation> {
+  if (typeof window === 'undefined' || !('geolocation' in navigator)) {
+    return {
+      latitude: null,
+      longitude: null,
+      accuracy: null,
+    };
+  }
+
+  return new Promise((resolve) => {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        resolve({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          accuracy: position.coords.accuracy,
+        });
+      },
+      () => {
+        resolve({
+          latitude: null,
+          longitude: null,
+          accuracy: null,
+        });
+      },
+      {
+        enableHighAccuracy: true,
+        timeout: 10_000,
+        maximumAge: 300_000,
+      },
+    );
+  });
 }
