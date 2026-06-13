@@ -11,6 +11,8 @@ import java.util.Locale;
 @Component
 public class VisitorLoggingInterceptor implements HandlerInterceptor {
 
+    public static final String VISITOR_MODEL_ATTRIBUTE = "visitorModel";
+
     private final VisitorLogService visitorLogService;
 
     public VisitorLoggingInterceptor(VisitorLogService visitorLogService) {
@@ -18,15 +20,15 @@ public class VisitorLoggingInterceptor implements HandlerInterceptor {
     }
 
     @Override
-    public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
         visitorLogService.logVisit(
                 resolveClientIp(request),
                 detectOsType(request.getHeader("User-Agent")),
                 detectDeviceType(request.getHeader("User-Agent")),
                 request.getMethod(),
-                request.getRequestURI()
+                request.getRequestURI(),
+                request.getAttribute(VISITOR_MODEL_ATTRIBUTE) instanceof String model ? model : null
         );
-        return true;
     }
 
     private String resolveClientIp(HttpServletRequest request) {

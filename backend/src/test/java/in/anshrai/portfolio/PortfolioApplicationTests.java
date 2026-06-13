@@ -36,12 +36,15 @@ class PortfolioApplicationTests {
         assertThat(output.getOut()).contains("Visitor IP=203.0.113.10");
         assertThat(output.getOut()).contains("OS=Windows");
         assertThat(output.getOut()).contains("Device=Desktop");
+        assertThat(output.getOut()).contains("Model=unknown");
         assertThat(output.getOut()).contains("Path=/api/profile");
     }
 
     @Test
     void logsLandingVisitor(CapturedOutput output) throws Exception {
         mockMvc.perform(post("/api/visits/landing")
+                        .contentType("application/json")
+                        .content("{\"model\":\"SM-S928B\"}")
                         .header("X-Forwarded-For", "198.51.100.24")
                         .header("User-Agent", "Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"))
                 .andExpect(status().isOk());
@@ -49,6 +52,7 @@ class PortfolioApplicationTests {
         assertThat(output.getOut()).contains("Visitor IP=198.51.100.24");
         assertThat(output.getOut()).contains("OS=iOS");
         assertThat(output.getOut()).contains("Device=Mobile");
+        assertThat(output.getOut()).contains("Model=SM-S928B");
         assertThat(output.getOut()).contains("Path=/api/visits/landing");
     }
 }
