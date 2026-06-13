@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: in.anshrai.portfolio.PortfolioApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 7.522 s -- in in.anshrai.portfolio.PortfolioApplicationTests

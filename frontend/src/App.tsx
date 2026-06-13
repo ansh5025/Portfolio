@@ -30,6 +30,16 @@ export default function App() {
   const [experience, setExperience] = useState<ExperienceT[]>(fallbackExperience);
   const [projects, setProjects] = useState<Project[]>(fallbackProjects);
   const [education, setEducation] = useState<EducationT[]>(fallbackEducation);
+  const landingVisitKey = 'portfolio.landing-visit.logged';
+
+  useEffect(() => {
+    if (typeof window !== 'undefined' && !window.sessionStorage.getItem(landingVisitKey)) {
+      window.sessionStorage.setItem(landingVisitKey, 'true');
+      void api.trackLandingVisit().catch(() => {
+        window.sessionStorage.removeItem(landingVisitKey);
+      });
+    }
+  }, [landingVisitKey]);
 
   useEffect(() => {
     let cancelled = false;

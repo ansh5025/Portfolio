@@ -1,0 +1,155 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>
+endobj
+2 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>
+endobj
+3 0 obj
+<< /Length 1586 >>
+stream
+BT
+/F2 18 Tf
+1 0 0 1 54 720 Tm (Study Topics for Building This Portfolio Project) Tj
+/F1 12 Tf
+1 0 0 1 54 664 Tm (If you want to build a project like this yourself, study these topics in this order.) Tj
+1 0 0 1 54 632 Tm (1. HTML, CSS, and JavaScript basics) Tj
+1 0 0 1 54 616 Tm (- Layout, forms, responsive design, DOM basics, events, and async requests.) Tj
+1 0 0 1 54 584 Tm (2. React) Tj
+1 0 0 1 54 568 Tm (- Components) Tj
+1 0 0 1 54 552 Tm (- Props) Tj
+1 0 0 1 54 536 Tm (- useState) Tj
+1 0 0 1 54 520 Tm (- useEffect) Tj
+1 0 0 1 54 504 Tm (- Form handling) Tj
+1 0 0 1 54 488 Tm (- Conditional rendering) Tj
+1 0 0 1 54 472 Tm (- Rendering lists with map) Tj
+1 0 0 1 54 440 Tm (3. TypeScript basics) Tj
+1 0 0 1 54 424 Tm (- Types and interfaces) Tj
+1 0 0 1 54 408 Tm (- Typing component props) Tj
+1 0 0 1 54 392 Tm (- Typing API responses) Tj
+1 0 0 1 54 376 Tm (- Typing form state) Tj
+1 0 0 1 54 344 Tm (4. Vite and frontend project structure) Tj
+1 0 0 1 54 328 Tm (- Dev server) Tj
+1 0 0 1 54 312 Tm (- Build process) Tj
+1 0 0 1 54 296 Tm (- Environment variables) Tj
+1 0 0 1 54 280 Tm (- Basic project organization) Tj
+1 0 0 1 54 248 Tm (5. REST APIs) Tj
+1 0 0 1 54 232 Tm (- GET vs POST) Tj
+1 0 0 1 54 216 Tm (- JSON request and response flow) Tj
+1 0 0 1 54 200 Tm (- Status codes) Tj
+1 0 0 1 54 184 Tm (- Endpoint design basics) Tj
+1 0 0 1 54 152 Tm (6. Java core) Tj
+1 0 0 1 54 136 Tm (- OOP) Tj
+1 0 0 1 54 120 Tm (- Classes and objects) Tj
+1 0 0 1 54 104 Tm (- Inheritance and interfaces) Tj
+1 0 0 1 54 88 Tm (- Collections) Tj
+1 0 0 1 54 72 Tm (- Exception handling) Tj
+ET
+endstream
+endobj
+4 0 obj
+<< /Type /Page /Parent 9 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 3 0 R >>
+endobj
+5 0 obj
+<< /Length 1564 >>
+stream
+BT
+/F1 12 Tf
+1 0 0 1 54 720 Tm (- Streams) Tj
+1 0 0 1 54 704 Tm (- Generics) Tj
+1 0 0 1 54 672 Tm (7. Spring Boot) Tj
+1 0 0 1 54 656 Tm (- Project setup) Tj
+1 0 0 1 54 640 Tm (- Dependency injection) Tj
+1 0 0 1 54 624 Tm (- @RestController) Tj
+1 0 0 1 54 608 Tm (- @Service) Tj
+1 0 0 1 54 592 Tm (- @Repository) Tj
+1 0 0 1 54 576 Tm (- @Configuration) Tj
+1 0 0 1 54 560 Tm (- Request mapping) Tj
+1 0 0 1 54 544 Tm (- Validation) Tj
+1 0 0 1 54 528 Tm (- application.properties) Tj
+1 0 0 1 54 496 Tm (8. Spring Data JPA and Hibernate) Tj
+1 0 0 1 54 480 Tm (- Entities) Tj
+1 0 0 1 54 464 Tm (- Repositories) Tj
+1 0 0 1 54 448 Tm (- CRUD operations) Tj
+1 0 0 1 54 432 Tm (- JpaRepository) Tj
+1 0 0 1 54 416 Tm (- Table mapping) Tj
+1 0 0 1 54 400 Tm (- In-memory database usage) Tj
+1 0 0 1 54 368 Tm (9. SQL and databases) Tj
+1 0 0 1 54 352 Tm (- Tables) Tj
+1 0 0 1 54 336 Tm (- Primary keys) Tj
+1 0 0 1 54 320 Tm (- Insert, select, update) Tj
+1 0 0 1 54 304 Tm (- Relationships basics) Tj
+1 0 0 1 54 272 Tm (10. Form handling and validation) Tj
+1 0 0 1 54 256 Tm (- Client-side validation) Tj
+1 0 0 1 54 240 Tm (- Backend validation) Tj
+1 0 0 1 54 224 Tm (- Success and error handling) Tj
+1 0 0 1 54 192 Tm (11. Axios or fetch) Tj
+1 0 0 1 54 176 Tm (- Calling APIs from the frontend) Tj
+1 0 0 1 54 160 Tm (- Handling loading, success, and failure states) Tj
+1 0 0 1 54 128 Tm (12. CORS and frontend-backend integration) Tj
+1 0 0 1 54 112 Tm (- Cross-origin requests) Tj
+1 0 0 1 54 96 Tm (- API base URLs) Tj
+1 0 0 1 54 80 Tm (- Local vs production configuration) Tj
+ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 9 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 5 0 R >>
+endobj
+7 0 obj
+<< /Length 1040 >>
+stream
+BT
+/F1 12 Tf
+1 0 0 1 54 720 Tm (13. Deployment basics) Tj
+1 0 0 1 54 704 Tm (- Frontend deployment) Tj
+1 0 0 1 54 688 Tm (- Backend deployment) Tj
+1 0 0 1 54 672 Tm (- Environment variables) Tj
+1 0 0 1 54 656 Tm (- Domain setup) Tj
+1 0 0 1 54 624 Tm (Recommended build path:) Tj
+1 0 0 1 54 592 Tm (1. Build a static portfolio first.) Tj
+1 0 0 1 54 576 Tm (2. Convert it to React.) Tj
+1 0 0 1 54 560 Tm (3. Create a Spring Boot backend with one GET endpoint.) Tj
+1 0 0 1 54 544 Tm (4. Connect React to the backend.) Tj
+1 0 0 1 54 528 Tm (5. Add database storage.) Tj
+1 0 0 1 54 512 Tm (6. Add contact form submission.) Tj
+1 0 0 1 54 496 Tm (7. Deploy both parts.) Tj
+1 0 0 1 54 464 Tm (Highest-priority stack for this type of project:) Tj
+1 0 0 1 54 448 Tm (- HTML/CSS/JavaScript) Tj
+1 0 0 1 54 432 Tm (- React) Tj
+1 0 0 1 54 416 Tm (- TypeScript basics) Tj
+1 0 0 1 54 400 Tm (- Java) Tj
+1 0 0 1 54 384 Tm (- Spring Boot) Tj
+1 0 0 1 54 368 Tm (- JPA/Hibernate) Tj
+1 0 0 1 54 352 Tm (- SQL) Tj
+1 0 0 1 54 336 Tm (- REST API integration) Tj
+ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 9 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 1 0 R /F2 2 0 R >> >> /Contents 7 0 R >>
+endobj
+9 0 obj
+<< /Type /Pages /Kids [4 0 R 6 0 R 8 0 R] /Count 3 >>
+endobj
+10 0 obj
+<< /Type /Catalog /Pages 9 0 R >>
+endobj
+xref
+0 11
+0000000000 65535 f 
+0000000009 00000 n 
+0000000079 00000 n 
+0000000154 00000 n 
+0000001792 00000 n 
+0000001928 00000 n 
+0000003544 00000 n 
+0000003680 00000 n 
+0000004772 00000 n 
+0000004908 00000 n 
+0000004977 00000 n 
+trailer
+<< /Size 11 /Root 10 0 R >>
+startxref
+5027
+%%EOF

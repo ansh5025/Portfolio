@@ -31,6 +31,7 @@ export const api = {
   getExperience: () => unwrap<Experience[]>(client.get('/experience')),
   getProjects: () => unwrap<Project[]>(client.get('/projects')),
   getEducation: () => unwrap<Education[]>(client.get('/education')),
+  trackLandingVisit: () => client.post('/visits/landing'),
   submitContact: (payload: ContactRequest) =>
     unwrap<{ id: number }>(client.post('/contact', payload)),
 };
