@@ -1,7 +1,6 @@
 package in.anshrai.portfolio.controller;
 
 import in.anshrai.portfolio.dto.ApiResponse;
-import org.springframework.mail.MailException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -29,12 +28,6 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Object>> handleIllegalState(IllegalStateException ex) {
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                 .body(new ApiResponse<>(false, ex.getMessage(), null));
-    }
-
-    @ExceptionHandler(MailException.class)
-    public ResponseEntity<ApiResponse<Object>> handleMail(MailException ex) {
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-                .body(new ApiResponse<>(false, "Unable to send message right now. Please try again later.", null));
     }
 
     @ExceptionHandler(Exception.class)
