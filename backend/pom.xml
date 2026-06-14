@@ -19,7 +19,7 @@
     <description>Backend REST API for anshrai.in portfolio</description>
 
     <properties>
-        <java.version>19</java.version>
+        <java.version>17</java.version>
     </properties>
 
     <dependencies>
