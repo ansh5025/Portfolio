@@ -8,6 +8,11 @@ import org.springframework.stereotype.Service;
 public class VisitorLogService {
 
     private static final Logger log = LoggerFactory.getLogger(VisitorLogService.class);
+    private final VisitorLogStorageService visitorLogStorageService;
+
+    public VisitorLogService(VisitorLogStorageService visitorLogStorageService) {
+        this.visitorLogStorageService = visitorLogStorageService;
+    }
 
     public void logVisit(
             String ipAddress,
@@ -32,6 +37,18 @@ public class VisitorLogService {
                 sanitizeNumber(accuracy),
                 sanitize(locationStatus),
                 sanitize(method),
+                sanitize(path)
+        );
+
+        visitorLogStorageService.store(
+                sanitize(ipAddress),
+                sanitize(osType),
+                sanitize(deviceType),
+                sanitize(model),
+                latitude,
+                longitude,
+                accuracy,
+                sanitize(locationStatus),
                 sanitize(path)
         );
     }
