@@ -5,22 +5,35 @@ import in.anshrai.portfolio.dto.VisitorLogEntry;
 import in.anshrai.portfolio.dto.VisitorRequest;
 import in.anshrai.portfolio.service.VisitorLogStorageService;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.PathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.nio.file.Path;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/visits")
 public class VisitController {
 
-    private final VisitorLogStorageService visitorLogStorageService;
+    private static final String LOG_SECRET_HEADER = "X-Visitor-Log-Secret";
 
-    public VisitController(VisitorLogStorageService visitorLogStorageService) {
+    private final VisitorLogStorageService visitorLogStorageService;
+    private final String visitorLogSecret;
+
+    public VisitController(VisitorLogStorageService visitorLogStorageService,
+                           @Value("${app.visitor-log.access-key:}") String visitorLogSecret) {
         this.visitorLogStorageService = visitorLogStorageService;
+        this.visitorLogSecret = visitorLogSecret;
     }
 
     @PostMapping("/landing")
@@ -36,8 +49,28 @@ public class VisitController {
         return ApiResponse.ok("Landing visit logged", null);
     }
 
-    @GetMapping("/landing/logs")
-    public ApiResponse<List<VisitorLogEntry>> getLandingLogs() {
-        return ApiResponse.ok(visitorLogStorageService.getAll());
+    @GetMapping("/landing/logs/download")
+    public ResponseEntity<Resource> downloadLandingLogs(
+            @RequestHeader(value = LOG_SECRET_HEADER, required = false) String secret) {
+        if (!isAuthorized(secret)) {
+            return ResponseEntity.status(401).build();
+        }
+
+        Path logPath = visitorLogStorageService.getLogFilePath();
+        if (!logPath.toFile().exists()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Resource resource = new PathResource(logPath);
+        return ResponseEntity.ok()
+                .contentType(MediaType.APPLICATION_JSON)
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=landing-visits.json")
+                .body(resource);
+    }
+
+    private boolean isAuthorized(String secret) {
+        return visitorLogSecret != null
+                && !visitorLogSecret.isBlank()
+                && visitorLogSecret.equals(secret);
     }
 }

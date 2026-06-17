@@ -27,7 +27,15 @@ public class VisitorLogStorageService {
     public VisitorLogStorageService(ObjectMapper objectMapper,
                                     @Value("${app.visitor-log.json-file:logs/landing-visits.json}") String logFilePath) {
         this.objectMapper = objectMapper;
-        this.logFilePath = Path.of(logFilePath);
+        Path path = Path.of(logFilePath);
+        if (!path.isAbsolute()) {
+            path = Path.of(System.getProperty("user.dir")).resolve(path).normalize();
+        }
+        this.logFilePath = path;
+    }
+
+    public Path getLogFilePath() {
+        return logFilePath;
     }
 
     public synchronized void store(String ipAddress,
