@@ -11,6 +11,8 @@ import java.util.Locale;
 @Component
 public class VisitorLoggingInterceptor implements HandlerInterceptor {
 
+    private static final String LANDING_VISIT_PATH = "/api/visits/landing";
+
     public static final String VISITOR_MODEL_ATTRIBUTE = "visitorModel";
     public static final String VISITOR_LATITUDE_ATTRIBUTE = "visitorLatitude";
     public static final String VISITOR_LONGITUDE_ATTRIBUTE = "visitorLongitude";
@@ -25,6 +27,10 @@ public class VisitorLoggingInterceptor implements HandlerInterceptor {
 
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
+        if (!LANDING_VISIT_PATH.equals(request.getRequestURI())) {
+            return;
+        }
+
         visitorLogService.logVisit(
                 resolveClientIp(request),
                 detectOsType(request.getHeader("User-Agent")),
@@ -42,15 +48,15 @@ public class VisitorLoggingInterceptor implements HandlerInterceptor {
     private String resolveClientIp(HttpServletRequest request) {
         String forwardedFor = request.getHeader("X-Forwarded-For");
         if (forwardedFor != null && !forwardedFor.isBlank()) {
-            return forwardedFor.split(",")[0].trim();
+            return normalizeIp(forwardedFor.split(",")[0].trim());
         }
 
         String realIp = request.getHeader("X-Real-IP");
         if (realIp != null && !realIp.isBlank()) {
-            return realIp.trim();
+            return normalizeIp(realIp.trim());
         }
 
-        return request.getRemoteAddr();
+        return normalizeIp(request.getRemoteAddr());
     }
 
     private String detectOsType(String userAgent) {
@@ -90,5 +96,18 @@ public class VisitorLoggingInterceptor implements HandlerInterceptor {
 
     private String normalize(String userAgent) {
         return userAgent == null ? "" : userAgent.toLowerCase(Locale.ROOT);
+    }
+
+    private String normalizeIp(String ipAddress) {
+        if (ipAddress == null) {
+            return null;
+        }
+
+        int lastColonIndex = ipAddress.lastIndexOf(':');
+        if (ipAddress.contains(".") && lastColonIndex > 0 && ipAddress.indexOf(':') == lastColonIndex) {
+            return ipAddress.substring(0, ipAddress.lastIndexOf(':'));
+        }
+
+        return ipAddress;
     }
 }
