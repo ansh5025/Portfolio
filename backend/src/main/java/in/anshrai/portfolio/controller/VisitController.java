@@ -5,10 +5,13 @@ import in.anshrai.portfolio.dto.VisitorLogEntry;
 import in.anshrai.portfolio.dto.VisitorRequest;
 import in.anshrai.portfolio.service.VisitorLogStorageService;
 import jakarta.servlet.http.HttpServletRequest;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.io.PathResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -50,22 +55,29 @@ public class VisitController {
     }
 
     @GetMapping("/landing/logs/download")
-    public ResponseEntity<Resource> downloadLandingLogs(
+    public ResponseEntity<Object> downloadLandingLogs(
             @RequestHeader(value = LOG_SECRET_HEADER, required = false) String secret) {
         if (!isAuthorized(secret)) {
-            return ResponseEntity.status(401).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Unauthorized");
         }
 
         Path logPath = visitorLogStorageService.getLogFilePath();
-        if (!logPath.toFile().exists()) {
-            return ResponseEntity.notFound().build();
+        if (!Files.exists(logPath)) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Log file not found");
         }
 
-        Resource resource = new PathResource(logPath);
-        return ResponseEntity.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=landing-visits.json")
-                .body(resource);
+        try {
+            InputStreamResource resource = new InputStreamResource(Files.newInputStream(logPath));
+            return ResponseEntity.ok()
+                    .contentType(MediaType.APPLICATION_JSON)
+                    .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=landing-visits.json")
+                    .body(resource);
+        } catch (IOException ex) {
+            Logger logger = LoggerFactory.getLogger(VisitController.class);
+            logger.error("Unable to read landing visits log file", ex);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Unable to read log file");
+        }
     }
 
     private boolean isAuthorized(String secret) {
