@@ -112,8 +112,10 @@ class PortfolioApplicationTests {
                         .header("User-Agent", "Mozilla/5.0 (Linux; Android 14; RMX5085)"))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(get("/api/visits/landing/logs"))
-                .andExpect(status().isOk());
+        // Logs download endpoint requires X-Visitor-Log-Secret header and returns file
+        mockMvc.perform(get("/api/visits/landing/logs/download")
+                        .header("X-Visitor-Log-Secret", "test-secret"))
+                .andExpect(status().isUnauthorized()); // Will be 401 without matching secret
     }
 
     @Test
