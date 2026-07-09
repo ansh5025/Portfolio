@@ -1,6 +1,7 @@
 import { FaGithub, FaLinkedin, FaCode, FaFileDownload } from 'react-icons/fa';
 import { SiLeetcode } from 'react-icons/si';
 import type { Profile } from '../types';
+import HeroDiagram from './HeroDiagram';
 
 interface Props {
   profile: Profile;
@@ -53,6 +54,10 @@ export default function Hero({ profile }: Props) {
               </a>
             )}
           </div>
+        </div>
+
+        <div className="hero__visual">
+          <HeroDiagram />
         </div>
       </div>
     </section>

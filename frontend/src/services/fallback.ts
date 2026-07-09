@@ -9,16 +9,16 @@ import type {
 export const fallbackProfile: Profile = {
   id: 0,
   name: 'Ansh Rai',
-  title: 'Java Backend Software Engineer',
+  title: 'Java Backend Engineer',
   tagline: 'Building reliable, scalable backend systems with Java & Spring Boot',
   summary:
     'Software engineer with a strong foundation in Java, OOP, and SDLC principles. ' +
     'Hands-on with backend development, REST APIs, SQL, and Java-based automation frameworks. ' +
-    'Currently a System Engineer Trainee at Infosys, focused on Java engineering and Agile delivery. ' +
+    'Currently a System Engineer at Infosys, focused on Java engineering and Agile delivery. ' +
     'Passionate about backend architecture, distributed systems, clean code, and continuous learning.',
   email: 'anshrai922@gmail.com',
   phone: '',
-  location: 'Greater Noida, Uttar Pradesh, India',
+  location: 'Pune, Maharashtra, India',
   linkedinUrl: 'https://www.linkedin.com/in/ansh-rai-832117218/',
   githubUrl: 'https://github.com/ansh5025',
   leetcodeUrl: 'https://leetcode.com/ansh5025',
@@ -53,8 +53,8 @@ export const fallbackExperience: Experience[] = [
   {
     id: 1,
     company: 'Infosys',
-    role: 'System Engineer Trainee',
-    location: 'Mysore, India',
+    role: 'System Engineer',
+    location: 'Pune, India',
     period: '2025 \u2013 Present',
     current: true,
     displayOrder: 1,

@@ -50,11 +50,11 @@ public class DataSeeder implements CommandLineRunner {
     private void seedProfile() {
         profileRepository.save(Profile.builder()
                 .name("Ansh Rai")
-                .title("Java Backend Software Engineer")
+                .title("Java Backend Engineer")
                 .tagline("Building reliable, scalable backend systems with Java & Spring Boot")
                 .summary("Software engineer with a strong foundation in Java, OOP, and SDLC principles. "
                         + "Hands-on with backend development, REST APIs, SQL, and Java-based automation frameworks. "
-                        + "Currently a System Engineer Trainee at Infosys, focused on Java engineering and Agile delivery. "
+                        + "Currently a System Engineer at Infosys, focused on Java engineering and Agile delivery. "
                         + "Passionate about backend architecture, distributed systems, clean code, and continuous learning.")
                 .email("anshrai922@gmail.com")
                 .phone("")
