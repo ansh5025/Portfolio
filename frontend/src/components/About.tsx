@@ -23,9 +23,8 @@ export default function About({ profile }: Props) {
           <div className="about__copy">
             <p>{profile.summary}</p>
             <p>
-              I enjoy designing clean, layered backends — controllers, services, and repositories
-              that make business intent obvious. Outside of work I sharpen DSA on LeetCode and
-              Codolio, and tinker with side projects.
+              Outside of work I spend time on data structures and algorithms — mostly on LeetCode
+              and Codolio — and build small projects to try out things I haven't used at my job yet.
             </p>
           </div>
           <div className="about__facts">

@@ -1,8 +1,12 @@
 {
 	"folders": [
 		{
-			"name": "🌐 Portfolio (root)",
+			"name": "PORTFOLIO",
 			"path": "."
+		},
+		{
+			"name": "E-commerce-project-springBoot",
+			"path": "../../E-commerce-project-springBoot"
 		}
 	],
 	"settings": {
