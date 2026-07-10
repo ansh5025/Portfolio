@@ -10,12 +10,13 @@ export const fallbackProfile: Profile = {
   id: 0,
   name: 'Ansh Rai',
   title: 'Java Backend Engineer',
-  tagline: 'Building reliable, scalable backend systems with Java & Spring Boot',
+  tagline: 'I work on Java and Spring Boot backends. Currently a System Engineer at Infosys.',
   summary:
-    'Software engineer with a strong foundation in Java, OOP, and SDLC principles. ' +
-    'Hands-on with backend development, REST APIs, SQL, and Java-based automation frameworks. ' +
-    'Currently a System Engineer at Infosys, focused on Java engineering and Agile delivery. ' +
-    'Passionate about backend architecture, distributed systems, clean code, and continuous learning.',
+    'I’m a software engineer who works mostly with Java and Spring Boot. ' +
+    'I finished my B.Tech in Computer Science in 2025 and joined Infosys as a System Engineer, ' +
+    'where I write Java test automation and work with REST APIs and SQL. ' +
+    'Most of what I know outside of work came from building side projects and practicing DSA on LeetCode. ' +
+    'Right now I’m focused on getting better at backend development and the basics of system design.',
   email: 'anshrai922@gmail.com',
   phone: '',
   location: 'Pune, Maharashtra, India',
@@ -59,12 +60,11 @@ export const fallbackExperience: Experience[] = [
     current: true,
     displayOrder: 1,
     bullets: [
-      'Training in Java backend engineering and automation under Agile SDLC.',
-      'Building and maintaining Java-based automation frameworks using Selenium, TestNG, and JUnit.',
-      'Designing and validating REST API workflows using Postman and JSON request/response payloads.',
-      'Applying OOP principles, exception handling, and modular design across Java projects.',
-      'Writing SQL queries for data setup, validation, and database verification.',
-      'Collaborating in Agile ceremonies \u2014 sprint planning, daily stand-ups, and retrospectives.',
+      'Completed Infosys\u2019s training program in Java and test automation.',
+      'Write and maintain automated tests in Java using Selenium, TestNG, and JUnit, including handling edge cases and failures.',
+      'Test REST APIs in Postman, checking request and response payloads against what each endpoint should return.',
+      'Write SQL queries to set up test data and verify results in the database.',
+      'Work in an Agile team \u2014 sprint planning, daily stand-ups, and retrospectives.',
     ],
   },
 ];
@@ -74,48 +74,48 @@ export const fallbackProjects: Project[] = [
     id: 1,
     name: 'Fitness Tracker Web App',
     description:
-      'Full-stack fitness tracker with authentication, BMI calculation, and workout/diet modules backed by Firebase.',
+      'A web app for logging workouts and diet and tracking basic fitness stats. Users sign in, record activity, and calculate their BMI, with everything saved to Firebase.',
     githubUrl: 'https://github.com/ansh5025',
     liveUrl: '',
     displayOrder: 1,
     techStack: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
     bullets: [
-      'Designed modular components for authentication, BMI calculation, diet, and workout tracking.',
-      'Implemented client-side validation and integrated Firebase Auth + Firestore for persistence.',
-      'Built session management flow with secure data storage for user activity tracking.',
-      'Verified end-to-end workflows including auth, DB writes, and session restoration.',
+      'Set up login with Firebase Authentication and stored user data in Firestore.',
+      'Added BMI calculation and separate sections for logging diet and workouts.',
+      'Validated form input on the client side and kept users signed in across sessions.',
+      'Tested the main flows end to end — signing in, saving data, and restoring a session.',
     ],
   },
   {
     id: 2,
     name: 'Image Steganography Web App',
     description:
-      'Web app that embeds and extracts hidden text inside image files using LSB-based steganography.',
+      'A web app that hides text inside an image and reads it back out, using LSB (least significant bit) steganography.',
     githubUrl: 'https://github.com/ansh5025',
     liveUrl: '',
     displayOrder: 2,
     techStack: ['HTML', 'CSS', 'JavaScript', 'Firebase'],
     bullets: [
-      'Implemented encryption and decryption flows for embedding messages inside image files.',
-      'Built file upload pipeline with validation for file type, size, and message length.',
-      'Integrated Firebase storage for processed media artifacts and retrieval flows.',
-      'Added robust error handling and negative-case coverage across the workflow.',
+      'Wrote the encode/decode logic — hiding message bits in the least significant bits of the image pixels and pulling them back out.',
+      'Checked each upload for file type, size, and message length before processing.',
+      'Stored the processed images in Firebase.',
+      'Handled invalid input and error cases across the flow.',
     ],
   },
   {
     id: 3,
     name: 'Botnet Detection System',
     description:
-      'Machine-learning pipeline that classifies network traffic as benign or malicious from packet metadata.',
+      'A machine learning project that labels network traffic as normal or malicious based on packet metadata.',
     githubUrl: 'https://github.com/ansh5025',
     liveUrl: '',
     displayOrder: 3,
     techStack: ['Python', 'Scikit-learn', 'Pandas', 'NumPy'],
     bullets: [
-      'Performed feature engineering on raw network packet metadata.',
-      'Trained and evaluated classification models for detecting botnet traffic.',
-      'Compared model accuracy across normal vs. malicious traffic samples.',
-      'Validated the end-to-end detection workflow with multiple datasets.',
+      'Cleaned and prepared features from raw packet data using Pandas and NumPy.',
+      'Trained and compared a few classification models with scikit-learn.',
+      'Measured accuracy on normal vs. malicious traffic.',
+      'Ran the pipeline on more than one dataset to check the results held up.',
     ],
   },
 ];

@@ -13,7 +13,7 @@ export default function Skills({ skills }: Props) {
         <div className="section__head">
           <h2 className="section__title">Skills & Tooling</h2>
           <p className="section__sub">
-            The languages, frameworks, and tools I use to build and ship backend systems.
+            Languages and tools I've used at work and in my own projects.
           </p>
         </div>
 

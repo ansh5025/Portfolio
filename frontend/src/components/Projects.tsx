@@ -10,9 +10,9 @@ export default function Projects({ projects }: Props) {
     <section id="projects" className="section">
       <div className="container">
         <div className="section__head">
-          <h2 className="section__title">Selected projects</h2>
+          <h2 className="section__title">Projects</h2>
           <p className="section__sub">
-            A mix of full-stack web apps and applied ML — each one built end-to-end.
+            A few things I've built — a couple of web apps and a machine learning project.
           </p>
         </div>
 

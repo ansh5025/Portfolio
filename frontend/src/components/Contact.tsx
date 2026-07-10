@@ -40,16 +40,16 @@ export default function Contact({ profile }: Props) {
     <section id="contact" className="section">
       <div className="container">
         <div className="section__head">
-          <h2 className="section__title">Let's build something</h2>
+          <h2 className="section__title">Get in touch</h2>
           <p className="section__sub">
-            Got a backend role, a project, or just want to chat? Drop a message — I'll reply.
+            Got a backend role, a project, or a question? Send a message and I'll get back to you.
           </p>
         </div>
 
         <div className="contact__grid">
           <aside className="contact__info">
             <h3>Reach me</h3>
-            <p>I'm open to backend / full-stack roles, freelance work, and interesting collabs.</p>
+            <p>I'm looking for backend and full-stack roles. Happy to talk about work or side projects.</p>
 
             <div className="contact__item">
               <span className="ico"><FaEnvelope /></span>
