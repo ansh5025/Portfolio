@@ -54,7 +54,7 @@ public class DataSeeder implements CommandLineRunner {
                 .tagline("I work on Java and Spring Boot backends. Currently a System Engineer at Infosys.")
                 .summary("I'm a software engineer who works mostly with Java and Spring Boot. "
                         + "I finished my B.Tech in Computer Science in 2025 and joined Infosys as a System Engineer, "
-                        + "where I write Java test automation and work with REST APIs and SQL. "
+                        + "where I work on Java and Spring Boot backends, REST APIs, and SQL. "
                         + "Most of what I know outside of work came from building side projects and practicing DSA on LeetCode. "
                         + "Right now I'm focused on getting better at backend development and the basics of system design.")
                 .email("anshrai922@gmail.com")
