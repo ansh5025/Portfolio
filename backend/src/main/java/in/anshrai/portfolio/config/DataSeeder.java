@@ -120,10 +120,10 @@ public class DataSeeder implements CommandLineRunner {
                 .current(true)
                 .displayOrder(1)
                 .bullets(List.of(
-                        "Completed Infosys's training program in Java and test automation.",
-                        "Write and maintain automated tests in Java using Selenium, TestNG, and JUnit, including handling edge cases and failures.",
-                        "Test REST APIs in Postman, checking request and response payloads against what each endpoint should return.",
-                        "Write SQL queries to set up test data and verify results in the database.",
+                        "Work on Java backend development with Spring Boot on the team's projects.",
+                        "Build REST APIs with Spring MVC and test them in Postman against the expected request and response payloads.",
+                        "Use Spring Data JPA and Hibernate to map entities and query the database.",
+                        "Write SQL to set up data and check results, and cover the code with JUnit tests.",
                         "Work in an Agile team \u2014 sprint planning, daily stand-ups, and retrospectives."
                 ))
                 .build();
