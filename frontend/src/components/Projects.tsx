@@ -18,9 +18,12 @@ export default function Projects({ projects }: Props) {
 
         <div className="projects__grid">
           {projects.map((p) => (
-            <article className="project" key={p.id}>
+            <article className={`project${p.liveUrl ? ' project--live' : ''}`} key={p.id}>
               <header className="project__head">
-                <h3 className="project__name">{p.name}</h3>
+                <h3 className="project__name">
+                  {p.name}
+                  {p.liveUrl && <span className="project__badge">Live</span>}
+                </h3>
                 <div className="project__links">
                   {p.githubUrl && (
                     <a className="project__link" href={p.githubUrl} target="_blank" rel="noreferrer" aria-label="GitHub repo">
