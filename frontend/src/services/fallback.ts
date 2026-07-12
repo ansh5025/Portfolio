@@ -78,13 +78,12 @@ export const fallbackProjects: Project[] = [
     githubUrl: 'https://github.com/ansh5025/ecommerce-project',
     liveUrl: 'https://ecommerce.anshrai.in',
     displayOrder: 1,
-    techStack: ['Java', 'Spring Boot', 'Spring Security', 'Hibernate', 'MySQL', 'React', 'Tailwind CSS', 'Azure'],
+    techStack: ['Java', 'Spring Boot', 'MySQL', 'React', 'Azure'],
     bullets: [
       'Rebuilt the old app as a REST API with its own React frontend, with separate logins for admins and customers.',
       'Added product, category, and cart management, plus an admin panel to manage all of it.',
       'Deployed everything to Azure with its own database, a custom domain, and HTTPS.',
       'Set up GitHub Actions so pushing to main builds and deploys both sides automatically.',
-      'Found and fixed a tricky login bug that only showed up once the frontend and backend were split onto separate domains.',
     ],
   },
   {
@@ -117,22 +116,6 @@ export const fallbackProjects: Project[] = [
       'Checked each upload for file type, size, and message length before processing.',
       'Stored the processed images in Firebase.',
       'Handled invalid input and error cases across the flow.',
-    ],
-  },
-  {
-    id: 3,
-    name: 'Botnet Detection System',
-    description:
-      'A machine learning project that labels network traffic as normal or malicious based on packet metadata.',
-    githubUrl: 'https://github.com/ansh5025',
-    liveUrl: '',
-    displayOrder: 4,
-    techStack: ['Python', 'Scikit-learn', 'Pandas', 'NumPy'],
-    bullets: [
-      'Cleaned and prepared features from raw packet data using Pandas and NumPy.',
-      'Trained and compared a few classification models with scikit-learn.',
-      'Measured accuracy on normal vs. malicious traffic.',
-      'Ran the pipeline on more than one dataset to check the results held up.',
     ],
   },
 ];
