@@ -74,17 +74,17 @@ export const fallbackProjects: Project[] = [
     id: 4,
     name: 'E-Commerce Platform',
     description:
-      'A full-stack e-commerce app with product browsing, cart, and an admin panel. Started as a JSP-based Spring Boot app, migrated to a REST API backend with a separate React frontend, and deployed to Azure with a custom domain.',
+      'An online store with product browsing, a cart, and an admin panel behind it. Started as an older-style Spring Boot app and rebuilt into a proper backend and frontend, then deployed live on my own domain.',
     githubUrl: 'https://github.com/ansh5025/ecommerce-project',
     liveUrl: 'https://ecommerce.anshrai.in',
     displayOrder: 1,
     techStack: ['Java', 'Spring Boot', 'Spring Security', 'Hibernate', 'MySQL', 'React', 'Tailwind CSS', 'Azure'],
     bullets: [
-      'Migrated a JSP/MVC Spring Boot app to a REST API backend with a separate React frontend, adding session-based auth with role-based access for admins and customers.',
-      'Built product, category, and cart management, with a full admin panel for CRUD operations.',
-      'Deployed the backend to Azure App Service and the frontend to Azure Static Web Apps, wiring up a MySQL database, custom domains, and free SSL certificates.',
-      'Set up CI/CD with GitHub Actions so every push automatically builds and redeploys both the frontend and backend.',
-      'Tracked down and fixed a cross-origin cookie and CORS header issue that was silently blocking authenticated requests between the separately-hosted frontend and backend.',
+      'Rebuilt the old app as a REST API with its own React frontend, with separate logins for admins and customers.',
+      'Added product, category, and cart management, plus an admin panel to manage all of it.',
+      'Deployed everything to Azure with its own database, a custom domain, and HTTPS.',
+      'Set up GitHub Actions so pushing to main builds and deploys both sides automatically.',
+      'Found and fixed a tricky login bug that only showed up once the frontend and backend were split onto separate domains.',
     ],
   },
   {
