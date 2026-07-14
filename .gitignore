@@ -2,3 +2,18 @@ node_modules/
 frontend/node_modules/
 .env
 .env.*
+
+# Java build output
+backend/target/
+
+# Logs
+backend/logs/
+
+# Frontend build output
+frontend/dist/
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Misc
+frontend/npm-install-log.txt
