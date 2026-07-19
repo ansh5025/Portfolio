@@ -35,7 +35,11 @@ public class ContactService {
                 .build();
 
         ContactMessage saved = repository.save(entity);
-        resendEmailSender.send(saved);
+        try {
+            resendEmailSender.send(saved);
+        } catch (Exception e) {
+            log.error("Failed to send email notification for contact id={}: {}", saved.getId(), e.getMessage());
+        }
         log.info("Stored contact message id={} from {}", saved.getId(), saved.getEmail());
         return saved;
     }
