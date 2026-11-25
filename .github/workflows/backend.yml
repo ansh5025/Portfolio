@@ -1,0 +1,66 @@
+name: Backend
+
+on:
+  push:
+    branches: [main]
+    paths: ['backend/**', '.github/workflows/backend.yml']
+  pull_request:
+    paths: ['backend/**']
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-java@v5
+        with:
+          distribution: temurin
+          java-version: '17'
+          cache: maven
+      - name: Test
+        working-directory: backend
+        run: mvn -B verify
+
+  image:
+    needs: test
+    if: github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Build and publish to GitHub Container Registry
+        run: |
+          image=ghcr.io/$(echo "${{ github.repository_owner }}" | tr '[:upper:]' '[:lower:]')/portfolio-api
+          docker build ./backend \
+            --label "org.opencontainers.image.source=${{ github.server_url }}/${{ github.repository }}" \
+            -t "$image:${{ github.sha }}" -t "$image:latest"
+          echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u "${{ github.actor }}" --password-stdin
+          docker push --all-tags "$image"
+
+  deploy:
+    needs: image
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_EB3B990BBAF1444F81ADA5E4E037E04C }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A03BC1DC73CD43939501E799DD04DE6F }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_5FBB61F2E58F4490973A113E2D3BB8F0 }}
+      # Before scripts/deploy-azure.ps1 has created the app, there's nothing to update yet.
+      - name: Roll out the new image
+        run: |
+          if az containerapp show -g PORTFOLIO -n portfolio-api --query name -o tsv > /dev/null 2>&1; then
+            az containerapp update -g PORTFOLIO -n portfolio-api \
+              --image "ghcr.io/ansh5025/portfolio-api:${{ github.sha }}" --output none
+          else
+            echo "portfolio-api doesn't exist yet; run scripts/deploy-azure.ps1 once."
+          fi
