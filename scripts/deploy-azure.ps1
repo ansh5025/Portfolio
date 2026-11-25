@@ -4,7 +4,7 @@
 # After the first run, CI deploys new images automatically; re-run this only to change infrastructure.
 param(
     [string]$ResourceGroup = 'PORTFOLIO',
-    [string]$Location = 'centralindia',
+    [string]$Location = 'japaneast',
     [string]$Domain = 'api.anshrai.in',
     [string]$Tag = '',
     [string]$OldWebApp = 'ansh-portfolio',

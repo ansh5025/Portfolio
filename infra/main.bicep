@@ -1,8 +1,14 @@
 // Portfolio API on Azure Container Apps: one small always-on replica (instant responses) with visitor logs on Azure Files.
 // Deploy with scripts/deploy-azure.ps1; CI then rolls out new images with `az containerapp update`.
+// Azure for Students allows one Container Apps environment per subscription, so this app joins the existing one.
 
-param location string = resourceGroup().location
+@description('Must match the shared environment\'s region.')
+param location string = 'japaneast'
 param prefix string = 'portfolio'
+
+@description('Resource group and name of the shared Container Apps environment.')
+param environmentResourceGroup string = 'pulsedesk-rg'
+param environmentName string = 'pulsedesk-env'
 
 @description('Public image, e.g. ghcr.io/ansh5025/portfolio-api:<commit sha>.')
 param image string
@@ -25,13 +31,9 @@ param customDomainCertificateId string = ''
 var suffix = uniqueString(resourceGroup().id)
 var appName = '${prefix}-api'
 
-resource logs 'Microsoft.OperationalInsights/workspaces@2023-09-01' = {
-  name: '${prefix}-logs'
-  location: location
-  properties: {
-    sku: { name: 'PerGB2018' }
-    retentionInDays: 30
-  }
+resource env 'Microsoft.App/managedEnvironments@2026-07-01' existing = {
+  name: environmentName
+  scope: resourceGroup(environmentResourceGroup)
 }
 
 resource storage 'Microsoft.Storage/storageAccounts@2023-05-01' = {
@@ -51,36 +53,16 @@ resource share 'Microsoft.Storage/storageAccounts/fileServices/shares@2023-05-01
   properties: { shareQuota: 1 }
 }
 
-// Pinned to workload-profiles mode: newer subscriptions otherwise get the restricted 'Express' mode.
-resource env 'Microsoft.App/managedEnvironments@2026-07-01' = {
-  name: '${prefix}-env'
-  location: location
-  properties: {
-    environmentMode: 'WorkloadProfiles'
-    workloadProfiles: [
-      { name: 'Consumption', workloadProfileType: 'Consumption' }
-    ]
-    appLogsConfiguration: {
-      destination: 'log-analytics'
-      logAnalyticsConfiguration: {
-        customerId: logs.properties.customerId
-        sharedKey: logs.listKeys().primarySharedKey
-      }
-    }
-  }
-}
-
-resource envStorage 'Microsoft.App/managedEnvironments/storages@2026-07-01' = {
-  parent: env
-  name: 'visitorlogs'
+module envStorage 'env-storage.bicep' = {
+  name: 'portfolio-env-storage'
+  scope: resourceGroup(environmentResourceGroup)
   dependsOn: [share]
-  properties: {
-    azureFile: {
-      accountName: storage.name
-      accountKey: storage.listKeys().keys[0].value
-      shareName: 'visitorlogs'
-      accessMode: 'ReadWrite'
-    }
+  params: {
+    environmentName: environmentName
+    storageName: 'portfolio-visitorlogs'
+    accountName: storage.name
+    accountKey: storage.listKeys().keys[0].value
+    shareName: 'visitorlogs'
   }
 }
 
@@ -145,7 +127,7 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
         {
           name: 'visitorlogs'
           storageType: 'AzureFile'
-          storageName: envStorage.name
+          storageName: envStorage.outputs.name
           // The image runs as uid/gid 1000; SMB has no Unix ownership, so present the share as that user.
           mountOptions: 'uid=1000,gid=1000,dir_mode=0750,file_mode=0640,nobrl'
         }
