@@ -132,11 +132,11 @@ resource app 'Microsoft.App/containerApps@2026-07-01' = {
           mountOptions: 'uid=1000,gid=1000,dir_mode=0750,file_mode=0640,nobrl'
         }
       ]
-      // Scale to zero after 30 idle minutes to save cost; max 1 keeps a single writer for the visitor log file.
+      // Scale to zero after 3 idle minutes to save cost; max 1 keeps a single writer for the visitor log file.
       scale: {
         minReplicas: 0
         maxReplicas: 1
-        cooldownPeriod: 1800
+        cooldownPeriod: 180
         rules: [
           {
             name: 'http'
